@@ -77,9 +77,32 @@ Aquí aparecerá el resultado.
 </div>
 
 <script>
-    function buscar() {
-    alert("El botón funciona");
-}
+    async function buscar() {
+
+    const numero = document.getElementById("numero").value.trim();
+
+    const respuesta = await fetch("./datos.json");
+    const datos = await respuesta.json();
+
+    const encontrado = datos.find(item => item.numero === numero);
+
+    const resultado = document.getElementById("resultado");
+
+    if (encontrado) {
+        resultado.innerHTML = `
+        <h2>${encontrado.numero}</h2>
+        <p><b>Última vez:</b> ${encontrado.fecha}</p>
+        <p><b>Hora:</b> ${encontrado.hora}</p>
+        <p><b>Veces que ha salido:</b> ${encontrado.veces}</p>
+        `;
+    } else {
+        resultado.innerHTML = `
+        <h2>No encontrado</h2>
+        <p>Ese número no está en la base de datos.</p>
+        `;
+    }
+
+    }
 
 </script>
 </body>
