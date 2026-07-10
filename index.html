@@ -78,16 +78,36 @@ Aquí aparecerá el resultado.
 
 <script>
 
-function buscar(){
+async function buscar(){
 
-let numero=document.getElementById("numero").value;
+const numero = document.getElementById("numero").value;
 
-document.getElementById("resultado").innerHTML=
-"<h2>"+numero+"</h2><p>Próximamente aquí aparecerá la última vez que salió.</p>";
+const respuesta = await fetch("datos.json");
+
+const datos = await respuesta.json();
+
+const encontrado = datos.find(item => item.numero === numero);
+
+if(encontrado){
+
+document.getElementById("resultado").innerHTML = `
+<h2>${encontrado.numero}</h2>
+
+<p><b>Última vez:</b> ${encontrado.fecha}</p>
+
+<p><b>Hora:</b> ${encontrado.hora}</p>
+
+<p><b>Veces que ha salido:</b> ${encontrado.veces}</p>
+`;
+
+}else{
+
+document.getElementById("resultado").innerHTML = `
+<h2>No encontrado</h2>
+
+<p>Ese número aún no está en la base de datos.</p>
+`;
 
 }
 
-</script>
-
-</body>
-</html>
+                              }
