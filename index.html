@@ -4,15 +4,90 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LotoData Nicaragua</title>
+
+<style>
+body{
+    margin:0;
+    background:#0f172a;
+    color:white;
+    font-family:Arial,sans-serif;
+}
+
+.contenedor{
+    max-width:400px;
+    margin:40px auto;
+    padding:20px;
+}
+
+h1{
+    text-align:center;
+    color:#38bdf8;
+}
+
+select,input,button{
+    width:100%;
+    padding:15px;
+    margin-top:15px;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+}
+
+button{
+    background:#2563eb;
+    color:white;
+    font-weight:bold;
+}
+
+#resultado{
+    margin-top:25px;
+    background:#1e293b;
+    padding:15px;
+    border-radius:10px;
+}
+</style>
+
 </head>
 
-<body style="background:#111827;color:white;font-family:Arial;text-align:center;padding-top:60px;">
+<body>
+
+<div class="contenedor">
 
 <h1>LotoData Nicaragua</h1>
 
-<p>¡Bienvenido!</p>
+<select>
+<option>Jugá 3</option>
+<option>Loto Diaria</option>
+</select>
 
-<p>Esta es la primera versión del proyecto.</p>
+<input
+id="numero"
+type="text"
+maxlength="3"
+placeholder="Escribe un número">
+
+<button onclick="buscar()">
+Buscar
+</button>
+
+<div id="resultado">
+Aquí aparecerá el resultado.
+</div>
+
+</div>
+
+<script>
+
+function buscar(){
+
+let numero=document.getElementById("numero").value;
+
+document.getElementById("resultado").innerHTML=
+"<h2>"+numero+"</h2><p>Próximamente aquí aparecerá la última vez que salió.</p>";
+
+}
+
+</script>
 
 </body>
 </html>
